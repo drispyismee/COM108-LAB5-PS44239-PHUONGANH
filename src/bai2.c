@@ -33,7 +33,18 @@ int main() {
 // --- SINH VIÊN VIẾT CODE CỦA HÀM DƯỚI ĐÂY ---
 int thanhToanHoaDon(float *soDuVi, float tongTien, float tyLeHoan, float *tienHoan) {
     // TODO: Viết code thanh toán và cập nhật số dư, tiền hoàn (dùng con trỏ)
+    if (*soDuVi < tongTien) {
+        return 0; // Thất bại - không đủ tiền
+    }
     // Trả về 1 nếu thành công, 0 nếu thất bại (không đủ tiền)
+    // Trừ tiền hóa đơn
+    *soDuVi -= tongTien;
     
-    return 0;
+    // Tính tiền cashback (hoàn)
+    *tienHoan = tongTien * (tyLeHoan / 100.0f);
+    
+    // Cộng tiền cashback vào số dư ví
+    *soDuVi += *tienHoan;
+    
+    return 1; // Thành công
 }
